@@ -1,103 +1,583 @@
-import Image from "next/image";
+"use client";
+
+import { useState } from "react";
+import { useForm, SubmitHandler, Controller } from "react-hook-form";
+import { AnimatePresence, motion } from "framer-motion";
+
+type FormData = {
+  firstName: string;
+  lastName: string;
+  phoneNumber: string;
+  email: string;
+  gradeLevel: string;
+  subjects: string[];
+  virtualClasses: string;
+  inPersonClasses: string;
+  classesPerWeek: string;
+  comments: string;
+};
+
+const gradeOptions = [
+  "Grade 1",
+  "Grade 2",
+  "Grade 3",
+  "Grade 4",
+  "Grade 5",
+  "Grade 6",
+  "Grade 7",
+  "Grade 8",
+  "Grade 9",
+  "Grade 10",
+  "Grade 11",
+  "Grade 12",
+  "Freshman",
+  "Sophomore",
+  "Junior",
+  "Senior",
+  "Postgraduate",
+  "Professional",
+];
+
+const subjectOptions = [
+  { key: "A", value: "Mathematics" },
+  { key: "B", value: "Chemistry" },
+  { key: "C", value: "Biology" },
+  { key: "D", value: "Physics" },
+  { key: "E", value: "Biochemistry" },
+  { key: "F", value: "English" },
+  { key: "G", value: "Coding" },
+  { key: "H", value: "Other" },
+];
+
+const classesPerWeekOptions = ["1", "2", "3", ">3"];
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const [currentStep, setCurrentStep] = useState(0);
+  const [selectedSubjects, setSelectedSubjects] = useState<string[]>([]);
+  const { register, control, handleSubmit } = useForm<FormData>();
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  const nextStep = () => {
+    setCurrentStep((prev) => prev + 1);
+  };
+
+  const onSubmit: SubmitHandler<FormData> = (data) => {
+    console.log(data);
+    nextStep();
+  };
+
+  const formSteps = [
+    // Step 0: Welcome screen
+    <motion.div
+      key="welcome"
+      initial={{ y: 20, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      exit={{ y: -20, opacity: 0 }}
+      className="flex flex-col items-center justify-center text-center"
+    >
+      <h1 className="text-6xl font-bold mb-4">Flourish Institute</h1>
+      <p className="text-xl mb-8">
+        We turn the dreams of our students into a reality.
+      </p>
+      <button
+        className="bg-[#036450] text-white px-8 py-3 rounded hover:bg-opacity-90 transition-all"
+        onClick={nextStep}
+      >
+        Get Started
+        <span className="ml-2 text-xs">press Enter ↵</span>
+      </button>
+      <div className="mt-4 flex items-center">
+        <span className="inline-block w-3 h-3 bg-black rounded-full mr-2"></span>
+        <span>Takes 1 minute</span>
+      </div>
+    </motion.div>,
+
+    // Step 1: Personal info
+    <motion.div
+      key="personal-info"
+      initial={{ y: 20, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      exit={{ y: -20, opacity: 0 }}
+      className="w-full max-w-lg"
+    >
+      <div className="mb-6">
+        <h2 className="text-3xl font-bold mb-2">Let&apos;s Get Started</h2>
+        <p className="text-gray-600">
+          Some basic information so we know how to address you.
+        </p>
+      </div>
+
+      <div className="mb-6">
+        <label className="block mb-2">First name</label>
+        <input
+          {...register("firstName")}
+          className="w-full p-2 border-b-2 border-gray-300 focus:border-[#036450] outline-none text-xl text-gray-400"
+          placeholder="Jane"
+        />
+      </div>
+
+      <div className="mb-6">
+        <label className="block mb-2">Last name</label>
+        <input
+          {...register("lastName")}
+          className="w-full p-2 border-b-2 border-gray-300 focus:border-[#036450] outline-none text-xl text-gray-400"
+          placeholder="Smith"
+        />
+      </div>
+
+      <div className="mb-6">
+        <label className="block mb-2">Phone number</label>
+        <div className="flex">
+          <div className="mr-2 p-2 border border-gray-300 rounded">
+            <span className="flex items-center">
+              <span className="inline-block w-6 h-4 bg-red-500 relative overflow-hidden rounded">
+                <span className="absolute inset-0 flex justify-center items-center text-white text-xs">
+                  🍁
+                </span>
+              </span>
+              <span className="ml-1">▼</span>
+            </span>
+          </div>
+          <input
+            {...register("phoneNumber")}
+            className="flex-1 p-2 border-b-2 border-gray-300 focus:border-[#036450] outline-none text-xl text-gray-400"
+            placeholder="(506) 234-5678"
+          />
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </div>
+
+      <button
+        onClick={nextStep}
+        className="bg-[#036450] text-white px-8 py-2 rounded hover:bg-opacity-90"
+      >
+        OK
+        <span className="ml-2 text-xs">press Enter ↵</span>
+      </button>
+    </motion.div>,
+
+    // Step 2: Email
+    <motion.div
+      key="email"
+      initial={{ y: 20, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      exit={{ y: -20, opacity: 0 }}
+      className="w-full max-w-lg"
+    >
+      <div className="mb-6">
+        <h2 className="text-3xl font-bold mb-2">What is your email?*</h2>
+      </div>
+
+      <div className="mb-6">
+        <input
+          {...register("email")}
+          className="w-full p-2 border-b-2 border-gray-300 focus:border-[#036450] outline-none text-xl text-gray-400"
+          placeholder="name@example.com"
+          type="email"
+        />
+      </div>
+
+      <button
+        onClick={nextStep}
+        className="bg-[#036450] text-white px-8 py-2 rounded hover:bg-opacity-90"
+      >
+        OK
+        <span className="ml-2 text-xs">press Enter ↵</span>
+      </button>
+    </motion.div>,
+
+    // Step 3: Grade level
+    <motion.div
+      key="grade-level"
+      initial={{ y: 20, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      exit={{ y: -20, opacity: 0 }}
+      className="w-full max-w-lg"
+    >
+      <div className="mb-6">
+        <h2 className="text-3xl font-bold mb-2">
+          What grade level is the student*
+        </h2>
+        <p className="text-gray-600">We support all levels of education.</p>
+      </div>
+
+      <div className="mb-6 relative">
+        <Controller
+          name="gradeLevel"
+          control={control}
+          render={({ field }) => (
+            <>
+              <div className="relative">
+                <input
+                  {...field}
+                  className="w-full p-2 border-b-2 border-gray-300 focus:border-[#036450] outline-none text-xl text-gray-400"
+                  placeholder="Type or select an option"
+                  autoComplete="off"
+                  onClick={() =>
+                    document
+                      .getElementById("dropdown")
+                      ?.classList.toggle("hidden")
+                  }
+                />
+                <span className="absolute right-2 top-1/2 transform -translate-y-1/2">
+                  ▼
+                </span>
+              </div>
+              <div
+                id="dropdown"
+                className="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded shadow-lg max-h-60 overflow-y-auto hidden"
+              >
+                {gradeOptions.map((option, index) => (
+                  <div
+                    key={index}
+                    className="p-2 hover:bg-gray-100 cursor-pointer text-gray-600"
+                    onClick={() => {
+                      field.onChange(option);
+                      document
+                        .getElementById("dropdown")
+                        ?.classList.add("hidden");
+                    }}
+                  >
+                    {option}
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
+        />
+      </div>
+
+      <button
+        onClick={nextStep}
+        className="bg-[#036450] text-white px-8 py-2 rounded hover:bg-opacity-90"
+      >
+        OK
+      </button>
+    </motion.div>,
+
+    // Step 4: Subjects
+    <motion.div
+      key="subjects"
+      initial={{ y: 20, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      exit={{ y: -20, opacity: 0 }}
+      className="w-full max-w-lg"
+    >
+      <div className="mb-6">
+        <h2 className="text-3xl font-bold mb-2">
+          Which subjects you seek to develop*
+        </h2>
+        <p className="text-gray-600">We support all levels of education.</p>
+        <p className="text-sm text-[#036450] mt-2">
+          Choose as many as you like
+        </p>
+      </div>
+
+      <div className="mb-6 grid grid-cols-1 gap-2">
+        {subjectOptions.map((subject) => (
+          <div
+            key={subject.key}
+            className="border border-gray-200 rounded p-3 cursor-pointer hover:border-[#036450] flex items-center"
+            onClick={() => {
+              const newSelected = selectedSubjects.includes(subject.value)
+                ? selectedSubjects.filter((s) => s !== subject.value)
+                : [...selectedSubjects, subject.value];
+              setSelectedSubjects(newSelected);
+            }}
+          >
+            <span
+              className={`inline-flex items-center justify-center w-6 h-6 mr-3 border rounded ${
+                selectedSubjects.includes(subject.value)
+                  ? "bg-[#036450] text-white border-[#036450]"
+                  : "border-gray-300"
+              }`}
+            >
+              {subject.key}
+            </span>
+            {subject.value}
+          </div>
+        ))}
+      </div>
+
+      <button
+        onClick={() => {
+          nextStep();
+        }}
+        className="bg-[#036450] text-white px-8 py-2 rounded hover:bg-opacity-90"
+      >
+        OK
+        <span className="ml-2 text-xs">press Enter ↵</span>
+      </button>
+    </motion.div>,
+
+    // Step 5: Virtual classes
+    <motion.div
+      key="virtual-classes"
+      initial={{ y: 20, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      exit={{ y: -20, opacity: 0 }}
+      className="w-full max-w-lg"
+    >
+      <div className="mb-6">
+        <h2 className="text-3xl font-bold mb-2">
+          Do you want virtual classes*
+        </h2>
+        <p className="text-gray-600">
+          Get coaching from a teacher across the globe.
+        </p>
+      </div>
+
+      <div className="mb-6 grid grid-cols-1 gap-2">
+        <Controller
+          name="virtualClasses"
+          control={control}
+          render={({ field }) => (
+            <>
+              <div
+                className="border border-gray-200 rounded p-3 cursor-pointer hover:border-[#036450] flex items-center"
+                onClick={() => field.onChange("Yes")}
+              >
+                <span
+                  className={`inline-flex items-center justify-center w-6 h-6 mr-3 border rounded ${
+                    field.value === "Yes"
+                      ? "bg-[#036450] text-white border-[#036450]"
+                      : "border-gray-300"
+                  }`}
+                >
+                  Y
+                </span>
+                Yes
+              </div>
+              <div
+                className="border border-gray-200 rounded p-3 cursor-pointer hover:border-[#036450] flex items-center"
+                onClick={() => field.onChange("No")}
+              >
+                <span
+                  className={`inline-flex items-center justify-center w-6 h-6 mr-3 border rounded ${
+                    field.value === "No"
+                      ? "bg-[#036450] text-white border-[#036450]"
+                      : "border-gray-300"
+                  }`}
+                >
+                  N
+                </span>
+                No
+              </div>
+            </>
+          )}
+        />
+      </div>
+
+      <button
+        onClick={nextStep}
+        className="bg-[#036450] text-white px-8 py-2 rounded hover:bg-opacity-90"
+      >
+        OK
+      </button>
+    </motion.div>,
+
+    // Step 6: In-person classes
+    <motion.div
+      key="in-person-classes"
+      initial={{ y: 20, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      exit={{ y: -20, opacity: 0 }}
+      className="w-full max-w-lg"
+    >
+      <div className="mb-6">
+        <h2 className="text-3xl font-bold mb-2">
+          Do you want in-person classes*
+        </h2>
+        <p className="text-gray-600">
+          We run our live sessions in North York, Toronto
+        </p>
+      </div>
+
+      <div className="mb-6 grid grid-cols-1 gap-2">
+        <Controller
+          name="inPersonClasses"
+          control={control}
+          render={({ field }) => (
+            <>
+              <div
+                className="border border-gray-200 rounded p-3 cursor-pointer hover:border-[#036450] flex items-center"
+                onClick={() => field.onChange("Yes")}
+              >
+                <span
+                  className={`inline-flex items-center justify-center w-6 h-6 mr-3 border rounded ${
+                    field.value === "Yes"
+                      ? "bg-[#036450] text-white border-[#036450]"
+                      : "border-gray-300"
+                  }`}
+                >
+                  Y
+                </span>
+                Yes
+              </div>
+              <div
+                className="border border-gray-200 rounded p-3 cursor-pointer hover:border-[#036450] flex items-center"
+                onClick={() => field.onChange("No")}
+              >
+                <span
+                  className={`inline-flex items-center justify-center w-6 h-6 mr-3 border rounded ${
+                    field.value === "No"
+                      ? "bg-[#036450] text-white border-[#036450]"
+                      : "border-gray-300"
+                  }`}
+                >
+                  N
+                </span>
+                No
+              </div>
+            </>
+          )}
+        />
+      </div>
+
+      <button
+        onClick={nextStep}
+        className="bg-[#036450] text-white px-8 py-2 rounded hover:bg-opacity-90"
+      >
+        OK
+      </button>
+    </motion.div>,
+
+    // Step 7: Classes per week
+    <motion.div
+      key="classes-per-week"
+      initial={{ y: 20, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      exit={{ y: -20, opacity: 0 }}
+      className="w-full max-w-lg"
+    >
+      <div className="mb-6">
+        <h2 className="text-3xl font-bold mb-2">
+          How many classes/week interest you?
+        </h2>
+      </div>
+
+      <div className="mb-6 relative">
+        <Controller
+          name="classesPerWeek"
+          control={control}
+          render={({ field }) => (
+            <>
+              <div className="relative">
+                <input
+                  {...field}
+                  className="w-full p-2 border-b-2 border-gray-300 focus:border-[#036450] outline-none text-xl text-gray-400"
+                  placeholder="Type or select an option"
+                  autoComplete="off"
+                  onClick={() =>
+                    document
+                      .getElementById("classes-dropdown")
+                      ?.classList.toggle("hidden")
+                  }
+                />
+                <span className="absolute right-2 top-1/2 transform -translate-y-1/2">
+                  ▼
+                </span>
+              </div>
+              <div
+                id="classes-dropdown"
+                className="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded shadow-lg max-h-60 overflow-y-auto hidden"
+              >
+                {classesPerWeekOptions.map((option, index) => (
+                  <div
+                    key={index}
+                    className="p-2 hover:bg-gray-100 cursor-pointer text-gray-600"
+                    onClick={() => {
+                      field.onChange(option);
+                      document
+                        .getElementById("classes-dropdown")
+                        ?.classList.add("hidden");
+                    }}
+                  >
+                    {option}
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
+        />
+      </div>
+
+      <button
+        onClick={nextStep}
+        className="bg-[#036450] text-white px-8 py-2 rounded hover:bg-opacity-90"
+      >
+        OK
+      </button>
+    </motion.div>,
+
+    // Step 8: Comments
+    <motion.div
+      key="comments"
+      initial={{ y: 20, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      exit={{ y: -20, opacity: 0 }}
+      className="w-full max-w-lg"
+    >
+      <div className="mb-6">
+        <h2 className="text-3xl font-bold mb-2">Any comments or questions?</h2>
+      </div>
+
+      <div className="mb-6">
+        <textarea
+          {...register("comments")}
+          className="w-full p-3 border border-gray-300 rounded focus:border-[#036450] outline-none min-h-[100px]"
+          placeholder="Your comments here..."
+        />
+      </div>
+
+      <button
+        onClick={handleSubmit(onSubmit)}
+        className="bg-[#036450] text-white px-8 py-2 rounded hover:bg-opacity-90"
+      >
+        Submit
+      </button>
+    </motion.div>,
+
+    // Step 9: Thank you
+    <motion.div
+      key="thank-you"
+      initial={{ y: 20, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      exit={{ y: -20, opacity: 0 }}
+      className="text-center"
+    >
+      <h1 className="text-5xl font-bold mb-6">Thank you!</h1>
+      <p className="text-xl mb-4">We'll be in touch with you shortly.</p>
+      <p className="text-gray-600">
+        Your journey with Flourish Institute is about to begin!
+      </p>
+    </motion.div>,
+  ];
+
+  return (
+    <div className="min-h-screen flex items-center justify-center p-4">
+      <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-2xl">
+        <div className="relative">
+          <AnimatePresence mode="wait">
+            {formSteps[currentStep]}
+          </AnimatePresence>
+        </div>
+        {currentStep > 0 && currentStep < formSteps.length - 1 && (
+          <div className="mt-8 flex justify-between items-center">
+            <div className="flex space-x-2">
+              {Array.from({ length: formSteps.length - 2 }).map((_, index) => (
+                <div
+                  key={index}
+                  className={`h-1 w-8 rounded-full ${
+                    index < currentStep ? "bg-[#036450]" : "bg-gray-300"
+                  }`}
+                />
+              ))}
+            </div>
+            <div className="text-sm text-gray-500">
+              {currentStep}/{formSteps.length - 2}
+            </div>
+          </div>
+        )}
+      </form>
     </div>
   );
 }
