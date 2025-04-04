@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../components/header";
 import Footer from "../components/footer";
 
@@ -484,23 +484,39 @@ function MainComponent() {
       <Footer />
       <style jsx global>{`
         @keyframes fadeIn {
-          from { opacity: 0; }
-          to { opacity: 1; }
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
         }
 
         @keyframes shine {
-          0% { transform: translateX(-100%) rotate(45deg); }
-          100% { transform: translateX(100%) rotate(45deg); }
+          0% {
+            transform: translateX(-100%) rotate(45deg);
+          }
+          100% {
+            transform: translateX(100%) rotate(45deg);
+          }
         }
 
         @keyframes spin-slow {
-          from { transform: translate(-50%, -50%) rotate(0deg); }
-          to { transform: translate(-50%, -50%) rotate(360deg); }
+          from {
+            transform: translate(-50%, -50%) rotate(0deg);
+          }
+          to {
+            transform: translate(-50%, -50%) rotate(360deg);
+          }
         }
-        
+
         @keyframes spin-slower {
-          from { transform: translate(-50%, -50%) rotate(360deg); }
-          to { transform: translate(-50%, -50%) rotate(0deg); }
+          from {
+            transform: translate(-50%, -50%) rotate(360deg);
+          }
+          to {
+            transform: translate(-50%, -50%) rotate(0deg);
+          }
         }
 
         .text-lg {
@@ -528,7 +544,7 @@ function MainComponent() {
         }
 
         .shine-effect::after {
-          content: '';
+          content: "";
           position: absolute;
           top: -50%;
           left: -50%;
@@ -537,7 +553,7 @@ function MainComponent() {
           background: linear-gradient(
             45deg,
             transparent 0%,
-            rgba(255,255,255,0.1) 50%,
+            rgba(255, 255, 255, 0.1) 50%,
             transparent 100%
           );
           transform: rotate(45deg);
@@ -549,14 +565,20 @@ function MainComponent() {
           animation: fadeIn 0.3s ease-out forwards;
         }
 
-        .stagger-fade-in > *:nth-child(1) { animation-delay: 0.1s; }
-        .stagger-fade-in > *:nth-child(2) { animation-delay: 0.2s; }
-        .stagger-fade-in > *:nth-child(3) { animation-delay: 0.3s; }
+        .stagger-fade-in > *:nth-child(1) {
+          animation-delay: 0.1s;
+        }
+        .stagger-fade-in > *:nth-child(2) {
+          animation-delay: 0.2s;
+        }
+        .stagger-fade-in > *:nth-child(3) {
+          animation-delay: 0.3s;
+        }
 
         .animate-spin-slow {
           animation: spin-slow 20s linear infinite;
         }
-        
+
         .animate-spin-slower {
           animation: spin-slower 30s linear infinite;
         }

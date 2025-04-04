@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Header from "../../components/header";
 import Footer from "../../components/footer";
 
@@ -607,7 +607,7 @@ function MainComponent() {
         .animate-fadeIn {
           animation: fadeIn 0.5s ease-out;
         }
-        
+
         @keyframes fadeIn {
           from {
             opacity: 0;
@@ -622,15 +622,21 @@ function MainComponent() {
         .step-transition {
           transition: all 0.3s ease;
         }
-        
+
         .step-active {
           animation: stepActivate 0.4s ease-out;
         }
 
         @keyframes stepActivate {
-          0% { transform: scale(0.9); }
-          50% { transform: scale(1.1); }
-          100% { transform: scale(1); }
+          0% {
+            transform: scale(0.9);
+          }
+          50% {
+            transform: scale(1.1);
+          }
+          100% {
+            transform: scale(1);
+          }
         }
 
         .input-focus-effect {
@@ -638,7 +644,7 @@ function MainComponent() {
         }
 
         .input-focus-effect:focus {
-          border-color: #FFD700;
+          border-color: #ffd700;
           box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.2);
         }
 
@@ -647,8 +653,14 @@ function MainComponent() {
         }
 
         @keyframes successPop {
-          0% { transform: scale(0.8); opacity: 0; }
-          100% { transform: scale(1); opacity: 1; }
+          0% {
+            transform: scale(0.8);
+            opacity: 0;
+          }
+          100% {
+            transform: scale(1);
+            opacity: 1;
+          }
         }
 
         .progress-step {
@@ -656,13 +668,13 @@ function MainComponent() {
         }
 
         .progress-step::after {
-          content: '';
+          content: "";
           position: absolute;
           bottom: -2px;
           left: 0;
           width: 100%;
           height: 2px;
-          background: #FFD700;
+          background: #ffd700;
           transform: scaleX(0);
           transform-origin: left;
           transition: transform 0.3s ease;
@@ -678,10 +690,10 @@ function MainComponent() {
         }
 
         .form-field::after {
-          content: '';
+          content: "";
           position: absolute;
           inset: -1px;
-          border: 1px solid #FFD700;
+          border: 1px solid #ffd700;
           opacity: 0;
           transition: opacity 0.3s ease;
         }
@@ -696,13 +708,18 @@ function MainComponent() {
         }
 
         .option-select::before {
-          content: '';
+          content: "";
           position: absolute;
           top: 0;
           left: 0;
           width: 100%;
           height: 100%;
-          background: linear-gradient(45deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+          background: linear-gradient(
+            45deg,
+            transparent,
+            rgba(255, 215, 0, 0.1),
+            transparent
+          );
           transform: translateX(-100%);
           transition: transform 0.3s ease;
         }
@@ -728,11 +745,11 @@ function MainComponent() {
         }
 
         ::-webkit-scrollbar-track {
-          background: #1A1A1A;
+          background: #1a1a1a;
         }
 
         ::-webkit-scrollbar-thumb {
-          background: #FFD700;
+          background: #ffd700;
           border-radius: 4px;
         }
 
