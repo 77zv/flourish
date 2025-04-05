@@ -108,7 +108,42 @@ export default function Home() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.9, ease: "easeOut", delay: 1.3 }}
       >
-        <span className="inline-block w-3 h-3 bg-[#555555] rounded-full mr-2"></span>
+        <motion.div 
+          className="relative w-3 h-3 inline-flex justify-center items-center rounded-full border border-[#555555] mr-2"
+          animate={{ 
+            rotate: [0, 360], 
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+        >
+          <motion.div 
+            className="absolute top-[3px] bg-[#555555] w-[1px] h-[3px] origin-bottom"
+            style={{ transformOrigin: 'bottom center' }}
+            animate={{ 
+              rotate: [0, 360],
+            }}
+            transition={{
+              duration: 3,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+          />
+          <motion.div 
+            className="absolute top-[4px] bg-[#555555] w-[0.5px] h-[2px] origin-bottom"
+            style={{ transformOrigin: 'bottom center' }}
+            animate={{ 
+              rotate: [0, 360], 
+            }}
+            transition={{
+              duration: 30,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+          />
+        </motion.div>
         <span>Takes 1 minute</span>
       </motion.div>
     </motion.div>,
@@ -127,84 +162,97 @@ export default function Home() {
       className="w-full max-w-lg"
     >
       <motion.div 
-        className="mb-6"
+        className="flex items-center mb-6"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
       >
-        <h2 className="text-3xl font-bold mb-2 text-[#171717]">Let&apos;s Get Started</h2>
+        <span className="text-[#036450] mr-2">1→</span>
+        <h2 className="text-3xl font-bold text-[#171717]">Let&apos;s Get Started</h2>
+      </motion.div>
+      
+      <motion.div 
+        className="mb-8"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
+      >
         <p className="text-gray-600">Some basic information so we know how to address you.</p>
       </motion.div>
       
       <motion.div 
-        className="mb-6"
+        className="mb-10"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
       >
-        <label className="block mb-2 text-[#333333]">First name</label>
+        <label className="block mb-2 font-medium">First name</label>
         <input
           {...register("firstName")}
-          className="w-full p-2 border-b-2 border-gray-300 focus:border-[#036450] outline-none text-xl text-gray-700 bg-white"
+          className="w-full p-2 border-b-2 border-gray-300 focus:border-[#036450] outline-none text-xl text-[#a9ccbc] bg-white"
           placeholder="Jane"
         />
       </motion.div>
       
       <motion.div 
-        className="mb-6"
+        className="mb-10"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut", delay: 0.8 }}
+        transition={{ duration: 0.8, ease: "easeOut", delay: 0.7 }}
       >
-        <label className="block mb-2 text-[#333333]">Last name</label>
+        <label className="block mb-2 font-medium">Last name</label>
         <input
           {...register("lastName")}
-          className="w-full p-2 border-b-2 border-gray-300 focus:border-[#036450] outline-none text-xl text-gray-700 bg-white"
+          className="w-full p-2 border-b-2 border-gray-300 focus:border-[#036450] outline-none text-xl text-[#a9ccbc] bg-white"
           placeholder="Smith"
         />
       </motion.div>
       
       <motion.div 
-        className="mb-6"
+        className="mb-10"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut", delay: 1.1 }}
+        transition={{ duration: 0.8, ease: "easeOut", delay: 0.9 }}
       >
-        <label className="block mb-2 text-[#333333]">Phone number</label>
+        <label className="block mb-2 font-medium">Phone number</label>
         <div className="flex">
-          <div className="mr-2 p-2 border border-gray-300 rounded">
-            <span className="flex items-center">
-              <span className="inline-block w-6 h-4 bg-red-500 relative overflow-hidden rounded">
-                <span className="absolute inset-0 flex justify-center items-center text-white text-xs">🍁</span>
+          <div className="mr-2 flex items-center border border-gray-300 rounded">
+            <div className="flex items-center px-2">
+              <span className="w-6 h-4 bg-red-500 relative overflow-hidden rounded flex justify-center items-center mr-1">
+                <span className="text-white text-xs">🍁</span>
               </span>
-              <span className="ml-1">▼</span>
-            </span>
+              <span className="text-gray-500">▼</span>
+            </div>
           </div>
           <input
             {...register("phoneNumber")}
-            className="flex-1 p-2 border-b-2 border-gray-300 focus:border-[#036450] outline-none text-xl text-gray-700 bg-white"
+            className="flex-1 p-2 border-b-2 border-gray-300 focus:border-[#036450] outline-none text-xl text-[#a9ccbc] bg-white"
             placeholder="(506) 234-5678"
           />
         </div>
       </motion.div>
       
-      <motion.button
-        onClick={nextStep}
-        className="bg-[#036450] text-white px-8 py-2 rounded hover:bg-opacity-90"
+      <motion.div
+        className="mt-12"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut", delay: 1.4 }}
+        transition={{ duration: 0.8, ease: "easeOut", delay: 1.1 }}
       >
-        OK
-        <span className="ml-2 text-xs">press Enter ↵</span>
-      </motion.button>
+        <motion.button
+          onClick={nextStep}
+          className="bg-[#036450] text-white px-8 py-2 rounded hover:bg-opacity-90"
+        >
+          OK
+          <span className="ml-2 text-xs">press Enter ↵</span>
+        </motion.button>
+      </motion.div>
     </motion.div>,
 
     // Step 2: Email
     <motion.div
       key="email"
-      initial={{ y: 30, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
       exit={{ y: -40, opacity: 0 }}
       transition={{ 
         duration: 0.8, 
@@ -214,38 +262,43 @@ export default function Home() {
       className="w-full max-w-lg"
     >
       <motion.div 
-        className="mb-6"
+        className="flex items-center mb-6"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
       >
-        <h2 className="text-3xl font-bold mb-2 text-[#171717]">What is your email?*</h2>
+        <span className="text-[#036450] mr-2">2→</span>
+        <h2 className="text-3xl font-bold text-[#171717]">What is your email?*</h2>
       </motion.div>
       
       <motion.div 
-        className="mb-6"
+        className="mb-10"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
       >
         <input
           {...register("email")}
-          className="w-full p-2 border-b-2 border-gray-300 focus:border-[#036450] outline-none text-xl text-gray-700 bg-white"
+          className="w-full p-2 border-b-2 border-gray-300 focus:border-[#036450] outline-none text-xl text-[#a9ccbc] bg-white"
           placeholder="name@example.com"
           type="email"
         />
       </motion.div>
       
-      <motion.button
-        onClick={nextStep}
-        className="bg-[#036450] text-white px-8 py-2 rounded hover:bg-opacity-90"
+      <motion.div
+        className="mt-12"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut", delay: 0.8 }}
       >
-        OK
-        <span className="ml-2 text-xs">press Enter ↵</span>
-      </motion.button>
+        <motion.button
+          onClick={nextStep}
+          className="bg-[#036450] text-white px-8 py-2 rounded hover:bg-opacity-90"
+        >
+          OK
+          <span className="ml-2 text-xs">press Enter ↵</span>
+        </motion.button>
+      </motion.div>
     </motion.div>,
 
     // Step 3: Grade level
@@ -262,13 +315,13 @@ export default function Home() {
       className="w-full max-w-lg"
     >
       <motion.div 
-        className="mb-6"
+        className="flex items-center mb-6"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
       >
-        <h2 className="text-3xl font-bold mb-2 text-[#171717]">What grade level is the student*</h2>
-        <p className="text-gray-600">We support all levels of education.</p>
+        <span className="text-[#036450] mr-2">3→</span>
+        <h2 className="text-3xl font-bold text-[#171717]">What grade level is the student*</h2>
       </motion.div>
       
       <motion.div 
