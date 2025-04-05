@@ -100,7 +100,6 @@ export default function Home() {
         transition={{ duration: 0.9, ease: "easeOut", delay: 1.1 }}
       >
         <span className="tracking-wide">Get Started</span>
-        <span className="ml-2 text-xs">press Enter ↵</span>
       </motion.button>
       
       <motion.div 
