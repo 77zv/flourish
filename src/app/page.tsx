@@ -244,7 +244,6 @@ export default function Home() {
           style={{ fontWeight: 900, letterSpacing: '0.02em' }}
         >
           <span className="tracking-wide">OK</span>
-          <span className="ml-2 text-xs">press Enter ↵</span>
         </motion.button>
       </motion.div>
     </motion.div>,
@@ -298,7 +297,6 @@ export default function Home() {
           style={{ fontWeight: 900, letterSpacing: '0.02em' }}
         >
           <span className="tracking-wide">OK</span>
-          <span className="ml-2 text-xs">press Enter ↵</span>
         </motion.button>
       </motion.div>
     </motion.div>,
@@ -440,7 +438,6 @@ export default function Home() {
         transition={{ duration: 0.8, ease: "easeOut", delay: 0.8 }}
       >
         OK
-        <span className="ml-2 text-xs">press Enter ↵</span>
       </motion.button>
     </motion.div>,
 
