@@ -92,13 +92,14 @@ export default function Home() {
       </motion.p>
       
       <motion.button
-        className="bg-[#036450] text-white px-8 py-3 rounded hover:bg-opacity-90 transition-all"
+        className="bg-[#036450] text-white px-8 py-3 rounded hover:bg-opacity-90 transition-all font-black text-shadow-sm"
+        style={{ fontWeight: 900, letterSpacing: '0.02em' }}
         onClick={nextStep}
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.9, ease: "easeOut", delay: 1.1 }}
       >
-        Get Started
+        <span className="tracking-wide">Get Started</span>
         <span className="ml-2 text-xs">press Enter ↵</span>
       </motion.button>
       
@@ -240,9 +241,10 @@ export default function Home() {
       >
         <motion.button
           onClick={nextStep}
-          className="bg-[#036450] text-white px-8 py-2 rounded hover:bg-opacity-90"
+          className="bg-[#036450] text-white px-8 py-2 rounded hover:bg-opacity-90 font-black text-shadow-sm"
+          style={{ fontWeight: 900, letterSpacing: '0.02em' }}
         >
-          OK
+          <span className="tracking-wide">OK</span>
           <span className="ml-2 text-xs">press Enter ↵</span>
         </motion.button>
       </motion.div>
@@ -293,9 +295,10 @@ export default function Home() {
       >
         <motion.button
           onClick={nextStep}
-          className="bg-[#036450] text-white px-8 py-2 rounded hover:bg-opacity-90"
+          className="bg-[#036450] text-white px-8 py-2 rounded hover:bg-opacity-90 font-black text-shadow-sm"
+          style={{ fontWeight: 900, letterSpacing: '0.02em' }}
         >
-          OK
+          <span className="tracking-wide">OK</span>
           <span className="ml-2 text-xs">press Enter ↵</span>
         </motion.button>
       </motion.div>
@@ -366,7 +369,8 @@ export default function Home() {
       
       <motion.button
         onClick={nextStep}
-        className="bg-[#036450] text-white px-8 py-2 rounded hover:bg-opacity-90"
+        className="bg-[#036450] text-white px-8 py-2 rounded hover:bg-opacity-90 font-black text-shadow-sm"
+        style={{ fontWeight: 900, letterSpacing: '0.02em' }}
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut", delay: 0.8 }}
@@ -430,7 +434,8 @@ export default function Home() {
         onClick={() => {
           nextStep();
         }}
-        className="bg-[#036450] text-white px-8 py-2 rounded hover:bg-opacity-90"
+        className="bg-[#036450] text-white px-8 py-2 rounded hover:bg-opacity-90 font-black text-shadow-sm"
+        style={{ fontWeight: 900, letterSpacing: '0.02em' }}
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut", delay: 0.8 }}
@@ -503,7 +508,8 @@ export default function Home() {
       
       <motion.button
         onClick={nextStep}
-        className="bg-[#036450] text-white px-8 py-2 rounded hover:bg-opacity-90"
+        className="bg-[#036450] text-white px-8 py-2 rounded hover:bg-opacity-90 font-black text-shadow-sm"
+        style={{ fontWeight: 900, letterSpacing: '0.02em' }}
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut", delay: 0.8 }}
@@ -575,7 +581,8 @@ export default function Home() {
       
       <motion.button
         onClick={nextStep}
-        className="bg-[#036450] text-white px-8 py-2 rounded hover:bg-opacity-90"
+        className="bg-[#036450] text-white px-8 py-2 rounded hover:bg-opacity-90 font-black text-shadow-sm"
+        style={{ fontWeight: 900, letterSpacing: '0.02em' }}
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut", delay: 0.8 }}
@@ -648,7 +655,8 @@ export default function Home() {
       
       <motion.button
         onClick={nextStep}
-        className="bg-[#036450] text-white px-8 py-2 rounded hover:bg-opacity-90"
+        className="bg-[#036450] text-white px-8 py-2 rounded hover:bg-opacity-90 font-black text-shadow-sm"
+        style={{ fontWeight: 900, letterSpacing: '0.02em' }}
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut", delay: 0.8 }}
@@ -694,7 +702,8 @@ export default function Home() {
       
       <motion.button
         onClick={handleSubmit(onSubmit)}
-        className="bg-[#036450] text-white px-8 py-2 rounded hover:bg-opacity-90"
+        className="bg-[#036450] text-white px-8 py-2 rounded hover:bg-opacity-90 font-black text-shadow-sm"
+        style={{ fontWeight: 900, letterSpacing: '0.02em' }}
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut", delay: 0.8 }}
