@@ -708,28 +708,6 @@ export default function Home() {
             {formSteps[currentStep]}
           </AnimatePresence>
         </motion.div>
-        {currentStep > 0 && currentStep < formSteps.length - 1 && (
-          <motion.div 
-            className="mt-8 flex justify-between items-center"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5, duration: 0.8 }}
-          >
-            <div className="flex space-x-2">
-              {Array.from({ length: formSteps.length - 2 }).map((_, index) => (
-                <div
-                  key={index}
-                  className={`h-1 w-8 rounded-full ${
-                    index < currentStep ? "bg-[#036450]" : "bg-gray-300"
-                  }`}
-                />
-              ))}
-            </div>
-            <div className="text-sm text-gray-500">
-              {currentStep}/{formSteps.length - 2}
-            </div>
-          </motion.div>
-        )}
       </form>
     </div>
   );
