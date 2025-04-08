@@ -55,6 +55,36 @@ function MainComponent() {
       });
     }
   };
+
+  // const saveData = async (data) => {
+  //   try {
+  //     const docRef = await addDoc(collection(db, "consultQueryUser"), {
+  //       ...data,
+  //       createdAt: new Date(),
+  //     });
+  //     console.log("Document written with ID: ", docRef.id);
+  //   } catch (e) {
+  //     console.error("Error adding document: ", e);
+  //   }
+  // };
+
+  const saveData = async (alldata) => {
+    try {
+      const res = await fetch("/api/saveUser", {
+        method: "POST",
+        body: JSON.stringify(alldata),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      const data = await res.json();
+      console.log("Response:", data);
+    } catch (err) {
+      console.error("Error adding document: ", err);
+    }
+  };
+
   const handleSubmit = async (e) => {
     if (e) e.preventDefault();
     if (!validateForm()) return;
@@ -84,6 +114,8 @@ function MainComponent() {
         Best regards,
         PreMD+ Team
       `;
+
+      await saveData(formData);
 
       // Simulate email sending
       console.log("Sending email:", emailContent);
