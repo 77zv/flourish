@@ -13,3 +13,51 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+enum GradeLevel {
+  GRADE_1
+  GRADE_2
+  GRADE_3
+  GRADE_4
+  GRADE_5
+  GRADE_6
+  GRADE_7
+  GRADE_8
+  GRADE_9
+  GRADE_10
+  GRADE_11
+  GRADE_12
+  FRESHMAN
+  SOPHOMORE
+  JUNIOR
+  SENIOR
+  POSTGRADUATE
+  PROFESSIONAL
+}
+
+enum Subject {
+  MATHEMATICS
+  CHEMISTRY
+  BIOLOGY
+  PHYSICS
+  BIOCHEMISTRY
+  ENGLISH
+  CODING
+  OTHER
+}
+
+model User {
+  id              String   @id @default(cuid())
+  firstName       String
+  lastName        String
+  email           String   @unique
+  phoneNumber     String
+  gradeLevel      GradeLevel
+  subjects        Subject[]
+  virtualClasses  Boolean
+  inPersonClasses Boolean
+  classesPerWeek  Int
+  comments        String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
