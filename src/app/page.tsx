@@ -42,7 +42,11 @@ const classesPerWeekOptions = ["1", "2", "3", ">3"];
 export default function Home() {
   const [currentStep, setCurrentStep] = useState(0);
   const [selectedSubjects, setSelectedSubjects] = useState<string[]>([]);
-  const { register, control, handleSubmit, setValue } = useForm<FormData>();
+  const [showErrors, setShowErrors] = useState(false);
+  const { register, control, handleSubmit, setValue, formState: { errors }, trigger } = useForm<FormData>({
+    mode: "onTouched",
+    reValidateMode: "onSubmit"
+  });
   const lastStepChangeRef = useRef(0);
 
   // Monitor current step changes
@@ -64,14 +68,47 @@ export default function Home() {
     setValue('subjects', selectedSubjects);
   }, [selectedSubjects, setValue]);
 
-  const nextStep = () => {
+  const nextStep = async () => {
     // Prevent duplicate transitions by checking last execution time
     const now = Date.now();
     if (now - lastStepChangeRef.current < 500) {
       console.log("Prevented duplicate step change");
       return;
     }
+
+    setShowErrors(true); // Show errors when user attempts to proceed
+
+    // Validate current step before proceeding
+    let isValid = true;
+    switch (currentStep) {
+      case 1:
+        isValid = await trigger(["firstName", "lastName", "phoneNumber"]);
+        break;
+      case 2:
+        isValid = await trigger("email");
+        break;
+      case 3:
+        isValid = await trigger("gradeLevel");
+        break;
+      case 4:
+        isValid = selectedSubjects.length > 0;
+        break;
+      case 5:
+        isValid = await trigger("virtualClasses");
+        break;
+      case 6:
+        isValid = await trigger("inPersonClasses");
+        break;
+      case 7:
+        isValid = await trigger("classesPerWeek");
+        break;
+    }
+
+    if (!isValid) {
+      return;
+    }
     
+    setShowErrors(false); // Reset error display for next step
     lastStepChangeRef.current = now;
     setCurrentStep((prev) => prev + 1);
     console.log("Moving to step:", currentStep + 1);
@@ -214,12 +251,16 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
             >
-              <label className="block mb-2 font-medium">First name</label>
+              <label className="block mb-2 font-medium">First name*</label>
               <input
-                {...register("firstName")}
-                className="w-full p-2 border-b-2 border-gray-300 focus:border-[#036450] outline-none text-xl text-[#a9ccbc] bg-white"
+                {...register("firstName", { required: "First name is required" })}
+                className={`w-full p-2 border-b-2 ${errors.firstName && showErrors ? 'border-red-500' : 'border-gray-300'} focus:border-[#036450] outline-none text-xl text-gray-700 bg-white`}
                 placeholder="Jane"
+                style={{ color: '#333333' }}
               />
+              {errors.firstName && showErrors && (
+                <p className="mt-1 text-sm text-red-500">{errors.firstName.message}</p>
+              )}
             </motion.div>
             
             <motion.div 
@@ -228,39 +269,52 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.7 }}
             >
-              <label className="block mb-2 font-medium">Last name</label>
+              <label className="block mb-2 font-medium">Last name*</label>
               <input
-                {...register("lastName")}
-                className="w-full p-2 border-b-2 border-gray-300 focus:border-[#036450] outline-none text-xl text-[#a9ccbc] bg-white"
+                {...register("lastName", { required: "Last name is required" })}
+                className={`w-full p-2 border-b-2 ${errors.lastName && showErrors ? 'border-red-500' : 'border-gray-300'} focus:border-[#036450] outline-none text-xl text-gray-700 bg-white`}
                 placeholder="Smith"
+                style={{ color: '#333333' }}
               />
+              {errors.lastName && showErrors && (
+                <p className="mt-1 text-sm text-red-500">{errors.lastName.message}</p>
+              )}
             </motion.div>
             
-            {/* Phone number input using that ugly ass library */}
             <motion.div 
               className="mb-10"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.9 }}
             >
-              <label className="block mb-2 font-medium">Phone number</label>
+              <label className="block mb-2 font-medium">Phone number*</label>
               <Controller
                 name="phoneNumber"
                 control={control}
+                rules={{ required: "Phone number is required" }}
                 render={({ field }) => (
-                  <PhoneInput
-                    country={'ca'}
-                    value={field.value}
-                    onChange={field.onChange}
-                    inputClass="w-full p-2 border-b-2 border-gray-300 focus:border-[#036450] outline-none text-xl text-[#a9ccbc] bg-white"
-                    containerClass="w-full"
-                    buttonClass="border border-gray-300 rounded"
-                    dropdownClass="bg-white border border-gray-300 rounded shadow-lg"
-                    searchClass="w-full p-2 border-b border-gray-300"
-                    enableSearch={true}
-                    disableSearchIcon={true}
-                    searchPlaceholder="Search country..."
-                  />
+                  <div>
+                    <PhoneInput
+                      country={'ca'}
+                      value={field.value}
+                      onChange={field.onChange}
+                      inputClass={`w-full p-2 border-b-2 ${errors.phoneNumber && showErrors ? 'border-red-500' : 'border-gray-300'} focus:border-[#036450] outline-none text-xl text-gray-700 bg-white`}
+                      containerClass="w-full"
+                      buttonClass={`border ${errors.phoneNumber && showErrors ? 'border-red-500' : 'border-gray-300'} rounded`}
+                      dropdownClass="bg-white border border-gray-300 rounded shadow-lg"
+                      searchClass="w-full p-2 border-b border-gray-300"
+                      enableSearch={true}
+                      disableSearchIcon={true}
+                      searchPlaceholder="Search country..."
+                      inputProps={{
+                        placeholder: "Phone number",
+                        style: { color: '#333333' }
+                      }}
+                    />
+                    {errors.phoneNumber && showErrors && (
+                      <p className="mt-1 text-sm text-red-500">{errors.phoneNumber.message}</p>
+                    )}
+                  </div>
                 )}
               />
             </motion.div>
@@ -313,11 +367,21 @@ export default function Home() {
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
             >
               <input
-                {...register("email")}
-                className="w-full p-2 border-b-2 border-gray-300 focus:border-[#036450] outline-none text-xl text-[#a9ccbc] bg-white"
+                {...register("email", { 
+                  required: "Email is required",
+                  pattern: {
+                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                    message: "Invalid email address"
+                  }
+                })}
+                className={`w-full p-2 border-b-2 ${errors.email && showErrors ? 'border-red-500' : 'border-gray-300'} focus:border-[#036450] outline-none text-xl text-gray-700 bg-white`}
                 placeholder="name@example.com"
                 type="email"
+                style={{ color: '#333333' }}
               />
+              {errors.email && showErrors && (
+                <p className="mt-1 text-sm text-red-500">{errors.email.message}</p>
+              )}
             </motion.div>
             
             <motion.div
@@ -370,12 +434,13 @@ export default function Home() {
               <Controller
                 name="gradeLevel"
                 control={control}
+                rules={{ required: "Grade level is required" }}
                 render={({ field }) => (
                   <>
                     <div className="relative">
                       <input
                         {...field}
-                        className="w-full p-2 border-b-2 border-gray-300 focus:border-[#036450] outline-none text-xl text-gray-700 bg-white"
+                        className={`w-full p-2 border-b-2 ${errors.gradeLevel && showErrors ? 'border-red-500' : 'border-gray-300'} focus:border-[#036450] outline-none text-xl text-gray-700 bg-white`}
                         placeholder="Type or select an option"
                         autoComplete="off"
                         onClick={() => document.getElementById('dropdown')?.classList.toggle('hidden')}
@@ -396,6 +461,9 @@ export default function Home() {
                         </div>
                       ))}
                     </div>
+                    {errors.gradeLevel && showErrors && (
+                      <p className="mt-1 text-sm text-red-500">{errors.gradeLevel.message}</p>
+                    )}
                   </>
                 )}
               />
@@ -466,6 +534,10 @@ export default function Home() {
               ))}
             </motion.div>
             
+            {selectedSubjects.length === 0 && showErrors && (
+              <p className="mt-1 text-sm text-red-500">Please select at least one subject</p>
+            )}
+            
             <motion.button
               onClick={() => {
                 // Register subjects with the form before proceeding
@@ -516,10 +588,11 @@ export default function Home() {
               <Controller
                 name="virtualClasses"
                 control={control}
+                rules={{ required: "Please select an option" }}
                 render={({ field }) => (
                   <>
                     <div 
-                      className="border border-gray-200 rounded p-3 cursor-pointer hover:border-[#036450] flex items-center bg-white text-gray-700"
+                      className={`border ${errors.virtualClasses && showErrors ? 'border-red-500' : 'border-gray-200'} rounded p-3 cursor-pointer hover:border-[#036450] flex items-center bg-white text-gray-700`}
                       onClick={() => field.onChange("Yes")}
                     >
                       <span className={`inline-flex items-center justify-center w-6 h-6 mr-3 border rounded ${
@@ -530,7 +603,7 @@ export default function Home() {
                       Yes
                     </div>
                     <div 
-                      className="border border-gray-200 rounded p-3 cursor-pointer hover:border-[#036450] flex items-center bg-white text-gray-700"
+                      className={`border ${errors.virtualClasses && showErrors ? 'border-red-500' : 'border-gray-200'} rounded p-3 cursor-pointer hover:border-[#036450] flex items-center bg-white text-gray-700`}
                       onClick={() => field.onChange("No")}
                     >
                       <span className={`inline-flex items-center justify-center w-6 h-6 mr-3 border rounded ${
@@ -540,6 +613,9 @@ export default function Home() {
                       </span>
                       No
                     </div>
+                    {errors.virtualClasses && showErrors && (
+                      <p className="mt-1 text-sm text-red-500">{errors.virtualClasses.message}</p>
+                    )}
                   </>
                 )}
               />
@@ -594,7 +670,7 @@ export default function Home() {
                 render={({ field }) => (
                   <>
                     <div 
-                      className="border border-gray-200 rounded p-3 cursor-pointer hover:border-[#036450] flex items-center bg-white text-gray-700"
+                      className={`border ${errors.inPersonClasses && showErrors ? 'border-red-500' : 'border-gray-200'} rounded p-3 cursor-pointer hover:border-[#036450] flex items-center bg-white text-gray-700`}
                       onClick={() => field.onChange("Yes")}
                     >
                       <span className={`inline-flex items-center justify-center w-6 h-6 mr-3 border rounded ${
@@ -605,7 +681,7 @@ export default function Home() {
                       Yes
                     </div>
                     <div 
-                      className="border border-gray-200 rounded p-3 cursor-pointer hover:border-[#036450] flex items-center bg-white text-gray-700"
+                      className={`border ${errors.inPersonClasses && showErrors ? 'border-red-500' : 'border-gray-200'} rounded p-3 cursor-pointer hover:border-[#036450] flex items-center bg-white text-gray-700`}
                       onClick={() => field.onChange("No")}
                     >
                       <span className={`inline-flex items-center justify-center w-6 h-6 mr-3 border rounded ${
@@ -653,7 +729,7 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
             >
-              <h2 className="text-3xl font-bold mb-2 text-[#171717]">How many classes/week interest you?</h2>
+              <h2 className="text-3xl font-bold mb-2 text-[#171717]">How many classes/week interest you?*</h2>
             </motion.div>
             
             <motion.div 
@@ -665,12 +741,13 @@ export default function Home() {
               <Controller
                 name="classesPerWeek"
                 control={control}
+                rules={{ required: "Please select the number of classes" }}
                 render={({ field }) => (
                   <>
                     <div className="relative">
                       <input
                         {...field}
-                        className="w-full p-2 border-b-2 border-gray-300 focus:border-[#036450] outline-none text-xl text-gray-700 bg-white"
+                        className={`w-full p-2 border-b-2 ${errors.classesPerWeek && showErrors ? 'border-red-500' : 'border-gray-300'} focus:border-[#036450] outline-none text-xl text-gray-700 bg-white`}
                         placeholder="Type or select an option"
                         autoComplete="off"
                         onClick={() => document.getElementById('classes-dropdown')?.classList.toggle('hidden')}
@@ -691,6 +768,9 @@ export default function Home() {
                         </div>
                       ))}
                     </div>
+                    {errors.classesPerWeek && showErrors && (
+                      <p className="mt-1 text-sm text-red-500">{errors.classesPerWeek.message}</p>
+                    )}
                   </>
                 )}
               />
