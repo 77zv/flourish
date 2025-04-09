@@ -458,7 +458,8 @@ function MainComponent() {
               onClick={() => setShowBookingForm(true)}
               className="bg-[#F4C542] text-black px-8 py-4 rounded-md text-lg font-bold hover:bg-[#E3B43C] transition-all"
             >
-              Book Your Consultation ($99)
+              Book Your Consultation
+              {/* ($99) */}
             </button>
           </div>
 
@@ -607,9 +608,7 @@ function MainComponent() {
                       disabled={isProcessing}
                       className="w-full bg-[#F4C542] text-black py-4 rounded-lg font-bold hover:bg-[#E3B43C] disabled:opacity-50 transition-all"
                     >
-                      {isProcessing
-                        ? "Processing..."
-                        : "Book Consultation ($99)"}
+                      {isProcessing ? "Processing..." : "Book Consultation"}
                     </button>
                   </div>
                 </form>
@@ -722,15 +721,17 @@ function MainComponent() {
         .animate-fade-in {
           animation: fadeIn 0.3s ease-out forwards;
         }
-        
+
         /* Search bar focus animation */
         .search-focus {
           transition: all 0.3s ease;
         }
-        
+
         .search-focus:focus {
           transform: scale(1.02);
-          box-shadow: 0 0 20px rgba(255, 215, 0,)}`}</style>
+          box-shadow: 0 0 20px rgba(255, 215, 0);
+        }
+      `}</style>
     </div>
   );
 }
