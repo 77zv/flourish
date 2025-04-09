@@ -251,7 +251,7 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
             >
-              <label className="block mb-2 font-medium">First name*</label>
+              <label className="block mb-2 font-medium">Student first name*</label>
               <input
                 {...register("firstName", { required: "First name is required" })}
                 className={`w-full p-2 border-b-2 ${errors.firstName && showErrors ? 'border-red-500' : 'border-gray-300'} focus:border-[#036450] outline-none text-xl text-gray-700 bg-white`}
@@ -269,7 +269,7 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.7 }}
             >
-              <label className="block mb-2 font-medium">Last name*</label>
+              <label className="block mb-2 font-medium">Student last name*</label>
               <input
                 {...register("lastName", { required: "Last name is required" })}
                 className={`w-full p-2 border-b-2 ${errors.lastName && showErrors ? 'border-red-500' : 'border-gray-300'} focus:border-[#036450] outline-none text-xl text-gray-700 bg-white`}
