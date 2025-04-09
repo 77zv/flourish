@@ -7,21 +7,62 @@ const userFormSchema = z.object({
   lastName: z.string().min(1, "Last name is required"),
   email: z.string().email("Invalid email address"),
   phoneNumber: z.string().min(1, "Phone number is required"),
-  gradeLevel: z.string().min(1, "Grade level is required"),
-  subjects: z.array(z.string()).min(1, "At least one subject is required"),
+  gradeLevel: z.enum(
+    [
+      "GRADE_1",
+      "GRADE_2",
+      "GRADE_3",
+      "GRADE_4",
+      "GRADE_5",
+      "GRADE_6",
+      "GRADE_7",
+      "GRADE_8",
+      "GRADE_9",
+      "GRADE_10",
+      "GRADE_11",
+      "GRADE_12",
+      "FRESHMAN",
+      "SOPHOMORE",
+      "JUNIOR",
+      "SENIOR",
+      "POSTGRADUATE",
+      "PROFESSIONAL",
+    ],
+    { message: "Invalid grade level" }
+  ),
+  subjects: z
+    .array(
+      z.enum(
+        [
+          "MATHEMATICS",
+          "CHEMISTRY",
+          "BIOLOGY",
+          "PHYSICS",
+          "BIOCHEMISTRY",
+          "ENGLISH",
+          "CODING",
+          "OTHER",
+        ],
+        { message: "Invalid subject" }
+      )
+    )
+    .min(1, { message: "At least one subject is required" }),
   virtualClasses: z.boolean(),
   inPersonClasses: z.boolean(),
-  classesPerWeek: z.string().min(1, "Classes per week is required"),
+  classesPerWeek: z.coerce
+    .number()
+    .int()
+    .positive({ message: "Must have at least one class per week" }),
   comments: z.string().optional(),
 });
 
 export const userRouter = createTRPCRouter({
   // Submit user registration form
-  submitForm: publicProcedure
+  submitForm: publicProcedure //TODO: Change this name later
     .input(userFormSchema)
     .mutation(async ({ ctx, input }) => {
       try {
-        // Create a new user record in the database
+        // Create a new user info record in the database
         const user = await ctx.db.user.create({
           data: {
             firstName: input.firstName,
@@ -37,9 +78,6 @@ export const userRouter = createTRPCRouter({
           },
         });
 
-        // Here you could add code to send an email notification
-        // For example: await sendEmailNotification(user);
-
         return {
           success: true,
           message: "Registration submitted successfully",
@@ -47,19 +85,10 @@ export const userRouter = createTRPCRouter({
         };
       } catch (error) {
         console.error("Error submitting form:", error);
-        
-        // Check if it's a unique constraint error (e.g., duplicate email)
-        if (error.code === "P2002") {
-          return {
-            success: false,
-            message: "An account with this email already exists",
-          };
-        }
-        
         return {
           success: false,
           message: "Failed to submit registration. Please try again later.",
         };
       }
     }),
-}); 
+});
