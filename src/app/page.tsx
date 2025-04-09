@@ -4,6 +4,8 @@ import { useState, useEffect, useRef } from "react";
 import { useForm, Controller } from "react-hook-form";
 import type { SubmitHandler } from "react-hook-form";
 import { AnimatePresence, motion } from "framer-motion";
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
 
 type FormData = {
   firstName: string;
@@ -234,6 +236,7 @@ export default function Home() {
               />
             </motion.div>
             
+            {/* Phone number input using that ugly ass library */}
             <motion.div 
               className="mb-10"
               initial={{ opacity: 0, y: 20 }}
@@ -241,21 +244,25 @@ export default function Home() {
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.9 }}
             >
               <label className="block mb-2 font-medium">Phone number</label>
-              <div className="flex">
-                <div className="mr-2 flex items-center border border-gray-300 rounded">
-                  <div className="flex items-center px-2">
-                    <span className="w-6 h-4 bg-red-500 relative overflow-hidden rounded flex justify-center items-center mr-1">
-                      <span className="text-white text-xs">🍁</span>
-                    </span>
-                    <span className="text-gray-500">▼</span>
-                  </div>
-                </div>
-                <input
-                  {...register("phoneNumber")}
-                  className="flex-1 p-2 border-b-2 border-gray-300 focus:border-[#036450] outline-none text-xl text-[#a9ccbc] bg-white"
-                  placeholder="(506) 234-5678"
-                />
-              </div>
+              <Controller
+                name="phoneNumber"
+                control={control}
+                render={({ field }) => (
+                  <PhoneInput
+                    country={'ca'}
+                    value={field.value}
+                    onChange={field.onChange}
+                    inputClass="w-full p-2 border-b-2 border-gray-300 focus:border-[#036450] outline-none text-xl text-[#a9ccbc] bg-white"
+                    containerClass="w-full"
+                    buttonClass="border border-gray-300 rounded"
+                    dropdownClass="bg-white border border-gray-300 rounded shadow-lg"
+                    searchClass="w-full p-2 border-b border-gray-300"
+                    enableSearch={true}
+                    disableSearchIcon={true}
+                    searchPlaceholder="Search country..."
+                  />
+                )}
+              />
             </motion.div>
             
             <motion.div
