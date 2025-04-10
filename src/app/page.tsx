@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 
 // TODO: Use react compiler if you wanna optimize later
 
@@ -94,9 +95,12 @@ function MainComponent() {
               </span>
             </div>
           </div>
-          <button className="bg-white text-[#004838] px-6 py-3 rounded-full text-base sm:text-lg md:text-xl font-semibold hover:bg-opacity-90 transition-transform duration-300 hover:scale-105">
+          <Link 
+            href="/register" 
+            className="bg-white text-[#004838] px-6 py-3 rounded-full text-base sm:text-lg md:text-xl font-semibold hover:bg-opacity-90 transition-transform duration-300 hover:scale-105 inline-block"
+          >
             Start Your Journey Today
-          </button>
+          </Link>
         </div>
         <style jsx global>{`
           .profession-text::after {
