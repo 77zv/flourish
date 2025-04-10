@@ -308,7 +308,7 @@ export default function Home() {
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
             >
               <span className="text-[#036450] mr-2">1→</span>
-              <h2 className="text-3xl font-bold text-[#171717]">
+              <h2 className="text-2xl sm:text-3xl font-bold text-[#171717]">
                 Let&apos;s Get Started
               </h2>
             </motion.div>
@@ -465,7 +465,7 @@ export default function Home() {
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
             >
               <span className="text-[#036450] mr-2">2→</span>
-              <h2 className="text-3xl font-bold text-[#171717]">
+              <h2 className="text-2xl sm:text-3xl font-bold text-[#171717]">
                 What is your email?*
               </h2>
             </motion.div>
@@ -539,7 +539,7 @@ export default function Home() {
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
             >
               <span className="text-[#036450] mr-2">3→</span>
-              <h2 className="text-3xl font-bold text-[#171717]">
+              <h2 className="text-2xl sm:text-3xl font-bold text-[#171717]">
                 What grade level is the student*
               </h2>
             </motion.div>
@@ -639,7 +639,7 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
             >
-              <h2 className="text-3xl font-bold mb-2 text-[#171717]">
+              <h2 className="text-2xl sm:text-3xl font-bold mb-2 text-[#171717]">
                 Which subjects you seek to develop*
               </h2>
               <p className="text-gray-600">
@@ -725,7 +725,7 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
             >
-              <h2 className="text-3xl font-bold mb-2 text-[#171717]">
+              <h2 className="text-2xl sm:text-3xl font-bold mb-2 text-[#171717]">
                 Do you want virtual classes*
               </h2>
               <p className="text-gray-600">
@@ -827,7 +827,7 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
             >
-              <h2 className="text-3xl font-bold mb-2 text-[#171717]">
+              <h2 className="text-2xl sm:text-3xl font-bold mb-2 text-[#171717]">
                 Do you want in-person classes*
               </h2>
               <p className="text-gray-600">
@@ -923,7 +923,7 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
             >
-              <h2 className="text-3xl font-bold mb-2 text-[#171717]">
+              <h2 className="text-2xl sm:text-3xl font-bold mb-2 text-[#171717]">
                 How many classes/week interest you?*
               </h2>
             </motion.div>
@@ -1026,7 +1026,7 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
             >
-              <h2 className="text-3xl font-bold mb-2 text-[#171717]">
+              <h2 className="text-2xl sm:text-3xl font-bold mb-2 text-[#171717]">
                 Any comments or questions?
               </h2>
             </motion.div>
@@ -1083,7 +1083,7 @@ export default function Home() {
             className="text-center"
           >
             <motion.h1
-              className="text-5xl font-bold mb-6 text-[#171717]"
+              className="text-4xl sm:text-5xl font-bold mb-6 text-[#171717]"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
