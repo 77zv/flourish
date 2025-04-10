@@ -28,10 +28,10 @@ function Footer() {
                   <i className="fas fa-envelope text-[#2ECC71] text-lg"></i>
                 </div>
                 <a
-                  href="mailto:flourishinstitute1@gmail.com"
+                  href="mailto:aryan@flourishinstitute.ca"
                   className="text-gray-300 hover:text-white transition-colors duration-300"
                 >
-                  flourishinstitute1@gmail.com
+                  aryan@flourishinstitute.ca
                 </a>
               </li>
               <li className="flex items-center gap-3 group">
@@ -50,7 +50,7 @@ function Footer() {
                   <i className="fas fa-location-dot text-[#2ECC71] text-lg"></i>
                 </div>
                 <span className="text-gray-300 group-hover:text-white transition-colors duration-300">
-                  188t Wilson Ave Unit L100
+                  188 Wilson Ave Unit L100
                   <br />
                   North York, ON
                 </span>
