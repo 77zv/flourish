@@ -17,20 +17,6 @@ function Footer() {
               Empowering students through expert mentorship and personalized
               education.
             </p>
-            <div className="flex gap-6">
-              <a href="#" className="text-gray-300 hover:text-white transition-colors duration-300">
-                <i className="fab fa-linkedin text-2xl"></i>
-              </a>
-              <a href="#" className="text-gray-300 hover:text-white transition-colors duration-300">
-                <i className="fab fa-twitter text-2xl"></i>
-              </a>
-              <a href="#" className="text-gray-300 hover:text-white transition-colors duration-300">
-                <i className="fab fa-facebook text-2xl"></i>
-              </a>
-              <a href="#" className="text-gray-300 hover:text-white transition-colors duration-300">
-                <i className="fab fa-instagram text-2xl"></i>
-              </a>
-            </div>
           </div>
 
           {/* Contact Section */}
