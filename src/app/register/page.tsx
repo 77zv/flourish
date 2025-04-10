@@ -6,6 +6,17 @@ import type { SubmitHandler } from "react-hook-form";
 import { AnimatePresence, motion } from "framer-motion";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
+import { api } from "~/trpc/react";
+
+// Define types for the backend schema
+type GradeLevel = 
+  | "GRADE_1" | "GRADE_2" | "GRADE_3" | "GRADE_4" | "GRADE_5" | "GRADE_6" 
+  | "GRADE_7" | "GRADE_8" | "GRADE_9" | "GRADE_10" | "GRADE_11" | "GRADE_12" 
+  | "FRESHMAN" | "SOPHOMORE" | "JUNIOR" | "SENIOR" | "POSTGRADUATE" | "PROFESSIONAL";
+
+type Subject = 
+  | "MATHEMATICS" | "CHEMISTRY" | "BIOLOGY" | "PHYSICS" 
+  | "BIOCHEMISTRY" | "ENGLISH" | "CODING" | "OTHER";
 
 type FormData = {
   firstName: string;
@@ -59,6 +70,8 @@ export default function Home() {
   const [currentStep, setCurrentStep] = useState(0);
   const [selectedSubjects, setSelectedSubjects] = useState<string[]>([]);
   const [showErrors, setShowErrors] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const {
     register,
     control,
@@ -71,6 +84,17 @@ export default function Home() {
     reValidateMode: "onSubmit",
   });
   const lastStepChangeRef = useRef(0);
+  const submitFormMutation = api.user.submitForm.useMutation({
+    onSuccess: () => {
+      setIsSubmitting(false);
+      setSubmitError(null);
+      nextStep();
+    },
+    onError: (error) => {
+      setIsSubmitting(false);
+      setSubmitError(error.message || "Failed to submit form. Please try again.");
+    },
+  });
 
   // Monitor current step changes
   useEffect(() => {
@@ -137,9 +161,36 @@ export default function Home() {
     console.log("Moving to step:", currentStep + 1);
   };
 
-  const onSubmit: SubmitHandler<FormData> = (data) => {
-    console.log(data);
-    nextStep();
+  const onSubmit: SubmitHandler<FormData> = async (data) => {
+    try {
+      setIsSubmitting(true);
+      setSubmitError(null);
+      
+      // Convert form data to match the backend schema
+      const formattedData = {
+        firstName: data.firstName,
+        lastName: data.lastName,
+        email: data.email,
+        phoneNumber: data.phoneNumber,
+        gradeLevel: data.gradeLevel.toUpperCase().replace(" ", "_") as GradeLevel,
+        subjects: data.subjects.map(subject => 
+          subject.toUpperCase().replace(" ", "_")
+        ) as Subject[],
+        virtualClasses: data.virtualClasses === "Yes",
+        inPersonClasses: data.inPersonClasses === "Yes",
+        classesPerWeek: parseInt(data.classesPerWeek),
+        comments: data.comments || "",
+      };
+      
+      // Submit the form data to the backend
+      await submitFormMutation.mutateAsync(formattedData);
+      
+      // The nextStep will be called in the onSuccess callback
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      setIsSubmitting(false);
+      setSubmitError("An unexpected error occurred. Please try again.");
+    }
   };
 
   // Instead of an array of JSX elements, let's use a function to render the current step
@@ -184,6 +235,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, ease: "easeOut", delay: 1.1 }}
+              type="button"
             >
               <span className="tracking-wide">Get Started</span>
             </motion.button>
@@ -384,6 +436,7 @@ export default function Home() {
                 onClick={nextStep}
                 className="bg-[#036450] text-white px-8 py-2 rounded hover:bg-opacity-90 font-black text-shadow-sm"
                 style={{ fontWeight: 900, letterSpacing: "0.02em" }}
+                type="button"
               >
                 <span className="tracking-wide">OK</span>
               </motion.button>
@@ -457,6 +510,7 @@ export default function Home() {
                 onClick={nextStep}
                 className="bg-[#036450] text-white px-8 py-2 rounded hover:bg-opacity-90 font-black text-shadow-sm"
                 style={{ fontWeight: 900, letterSpacing: "0.02em" }}
+                type="button"
               >
                 <span className="tracking-wide">OK</span>
               </motion.button>
@@ -558,6 +612,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.8 }}
+              type="button"
             >
               OK
             </motion.button>
@@ -643,6 +698,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.8 }}
+              type="button"
             >
               OK
             </motion.button>
@@ -744,6 +800,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.8 }}
+              type="button"
             >
               OK
             </motion.button>
@@ -839,6 +896,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.8 }}
+              type="button"
             >
               OK
             </motion.button>
@@ -941,6 +999,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.8 }}
+              type="button"
             >
               OK
             </motion.button>
@@ -985,6 +1044,16 @@ export default function Home() {
               />
             </motion.div>
 
+            {submitError && (
+              <motion.div
+                className="mb-4 p-3 bg-red-100 text-red-700 rounded"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+              >
+                {submitError}
+              </motion.div>
+            )}
+
             <motion.button
               onClick={handleSubmit(onSubmit)}
               className="bg-[#036450] text-white px-8 py-2 rounded hover:bg-opacity-90 font-black text-shadow-sm"
@@ -992,8 +1061,9 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.8 }}
+              disabled={isSubmitting}
             >
-              Submit
+              {isSubmitting ? "Submitting..." : "Submit Registration"}
             </motion.button>
           </motion.div>
         );
