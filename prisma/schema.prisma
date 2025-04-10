@@ -10,8 +10,9 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 enum GradeLevel {
@@ -47,10 +48,10 @@ enum Subject {
 }
 
 model User {
-  id              String   @id @default(cuid())
+  id              String     @id @default(cuid())
   firstName       String
   lastName        String
-  email           String   @unique
+  email           String     @unique
   phoneNumber     String
   gradeLevel      GradeLevel
   subjects        Subject[]
@@ -58,6 +59,6 @@ model User {
   inPersonClasses Boolean
   classesPerWeek  Int
   comments        String?
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
+  createdAt       DateTime   @default(now())
+  updatedAt       DateTime   @updatedAt
 }
