@@ -11,7 +11,7 @@ import {
   FaGlobe
 } from 'react-icons/fa';
 
-interface IconSvgProps {
+export interface IconSvgProps {
   type: 'child' | 'reader' | 'gradCap' | 'university' | 'award' | 'trophy' | 'brain' | 'building' | 'globe';
   className?: string;
 }

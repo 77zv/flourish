@@ -1,3 +1,5 @@
+import type { IconSvgProps } from './IconSvg';
+
 export const PROFESSIONS = [
   "Doctor",
   "Engineer",
@@ -6,7 +8,14 @@ export const PROFESSIONS = [
   "Entrepreneur",
 ];
 
-export const gradeLevels = [
+type IconType = IconSvgProps['type'];
+
+export const gradeLevels: Array<{
+  iconType: IconType;
+  label: string;
+  title: string;
+  description: string;
+}> = [
   {
     iconType: 'child',
     label: "Elementary (K–5)",
@@ -33,7 +42,12 @@ export const gradeLevels = [
   },
 ];
 
-export const exams = [
+export const exams: Array<{
+  iconType: IconType;
+  label: string;
+  title: string;
+  description: string;
+}> = [
   {
     iconType: 'award',
     label: "IB & AP",
