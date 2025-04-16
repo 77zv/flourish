@@ -2,6 +2,14 @@
 import React, { useEffect, useState } from "react";
 import Header from "../components/header";
 import Footer from "../components/footer";
+// import { ReactComponent as BlueTick } from "../../assets/icons/BlueTick.svg";
+import GPABoost from "@/assets/icons/GPABoost.svg";
+import MCATCars from "@/assets/icons/MCATCars.svg";
+import Comments from "@/assets/icons/Comments.svg";
+import MMiPrep from "@/assets/icons/MMiPrep.svg";
+import CASPer from "@/assets/icons/CASPer.svg";
+import css from "./landing.module.css";
+import classNames from "classnames";
 
 function MainComponent() {
   const handleConsultation = () => {
@@ -92,7 +100,8 @@ function MainComponent() {
               <div className="flex justify-between mb-8">
                 <div className="flex flex-col items-center w-[120px]">
                   <div className="w-[90px] h-[90px] rounded-full border-4 border-[#4CAF50] flex items-center justify-center mb-3 shadow-[0_0_15px_rgba(76,175,80,0.3)]">
-                    <i className="fas fa-chart-line text-3xl text-white"></i>
+                    {/* <i className="fas fa-chart-line text-3xl text-white"></i> */}
+                    <GPABoost width={20} height={20} />
                   </div>
                   <h3 className="text-lg font-bold text-white font-inter mb-1">
                     GPA Boost
@@ -157,10 +166,21 @@ function MainComponent() {
             </div>
 
             <div className="hidden md:grid md:grid-cols-5 gap-8">
-              <div className="flex flex-col items-center">
-                <div className="w-32 h-32 rounded-full border-4 border-[#4CAF50] flex items-center justify-center mb-3 shadow-[0_0_15px_rgba(76,175,80,0.3)]">
+              <div
+                className={classNames(
+                  "flex",
+                  "flex-col",
+                  "items-center",
+                  css.smallCards
+                )}
+              >
+                {/* <div className="w-32 h-32 rounded-full border-4 border-[#4CAF50] flex items-center justify-center mb-3 shadow-[0_0_15px_rgba(76,175,80,0.3)]">
                   <i className="fas fa-chart-line text-6xl text-white"></i>
-                </div>
+                  <GPABoost width={20} height={20} />
+                </div> */}
+
+                <img src="/icons/GPABoost.svg" />
+
                 <h3 className="text-2xl font-bold text-white font-inter mb-1">
                   GPA Boost
                 </h3>
@@ -169,30 +189,57 @@ function MainComponent() {
                 </p>
               </div>
 
-              <div className="flex flex-col items-center">
-                <div className="w-32 h-32 rounded-full border-4 border-[#FFD700] flex items-center justify-center mb-3 shadow-[0_0_15px_rgba(255,215,0,0.3)]">
+              <div
+                className={classNames(
+                  "flex",
+                  "flex-col",
+                  "items-center",
+                  css.smallCards
+                )}
+              >
+                {/* <div className="w-32 h-32 rounded-full border-4 border-[#FFD700] flex items-center justify-center mb-3 shadow-[0_0_15px_rgba(255,215,0,0.3)]">
                   <i className="fas fa-file-alt text-6xl text-white"></i>
-                </div>
+                </div> */}
+                {/* <MCATCars /> */}
+                <img src="/icons/MCATCars.svg" />
                 <h3 className="text-2xl font-bold text-white font-inter mb-1">
                   MCAT CARS
                 </h3>
                 <p className="text-xl font-inter text-[#FFD700]">128+ Target</p>
               </div>
 
-              <div className="flex flex-col items-center">
-                <div className="w-32 h-32 rounded-full border-4 border-[#2196F3] flex items-center justify-center mb-3 shadow-[0_0_15px_rgba(33,150,243,0.3)]">
+              <div
+                className={classNames(
+                  "flex",
+                  "flex-col",
+                  "items-center",
+                  css.smallCards
+                )}
+              >
+                {/* <div className="w-32 h-32 rounded-full border-4 border-[#2196F3] flex items-center justify-center mb-3 shadow-[0_0_15px_rgba(33,150,243,0.3)]">
                   <i className="fas fa-users text-6xl text-white"></i>
-                </div>
+                </div> */}
+                {/* <CASPer /> */}
+                <img src="/icons/CASPer.svg" />
                 <h3 className="text-2xl font-bold text-white font-inter mb-1">
                   CASPer
                 </h3>
                 <p className="text-xl font-inter text-[#2196F3]">Q3/Q4 Score</p>
               </div>
 
-              <div className="flex flex-col items-center">
-                <div className="w-32 h-32 rounded-full border-4 border-[#FF69B4] flex items-center justify-center mb-3 shadow-[0_0_15px_rgba(255,105,180,0.3)]">
+              <div
+                className={classNames(
+                  "flex",
+                  "flex-col",
+                  "items-center",
+                  css.smallCards
+                )}
+              >
+                {/* <div className="w-32 h-32 rounded-full border-4 border-[#FF69B4] flex items-center justify-center mb-3 shadow-[0_0_15px_rgba(255,105,180,0.3)]">
                   <i className="fas fa-tasks text-6xl text-white"></i>
-                </div>
+                </div> */}
+                {/* <Comments /> */}
+                <img src="/icons/Comments.svg" />
                 <h3 className="text-2xl font-bold text-white font-inter mb-1">
                   Applications
                 </h3>
@@ -201,10 +248,19 @@ function MainComponent() {
                 </p>
               </div>
 
-              <div className="flex flex-col items-center">
-                <div className="w-32 h-32 rounded-full border-4 border-[#9C27B0] flex items-center justify-center mb-3 shadow-[0_0_15px_rgba(156,39,176,0.3)]">
+              <div
+                className={classNames(
+                  "flex",
+                  "flex-col",
+                  "items-center",
+                  css.smallCards
+                )}
+              >
+                {/* <div className="w-32 h-32 rounded-full border-4 border-[#9C27B0] flex items-center justify-center mb-3 shadow-[0_0_15px_rgba(156,39,176,0.3)]">
                   <i className="fas fa-comments text-6xl text-white"></i>
-                </div>
+                </div> */}
+                {/* <MMiPrep /> */}
+                <img src="/icons/MMiPrep.svg" />
                 <h3 className="text-2xl font-bold text-white font-inter mb-1">
                   MMI Prep
                 </h3>
@@ -216,7 +272,13 @@ function MainComponent() {
 
         <section className="py-16 px-6 bg-black">
           <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-12">
+            <div
+              className={classNames(
+                "text-center",
+                "mb-12",
+                css.nextstepContainer
+              )}
+            >
               <h2 className="text-4xl md:text-5xl font-bold text-white font-inter mb-4">
                 Take the Next Step Toward Medical School
               </h2>

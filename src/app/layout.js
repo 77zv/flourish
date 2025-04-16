@@ -11,6 +11,28 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        {/* ✅ Font Awesome CDN */}
+        {/* <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+          integrity="sha512-ZPjF9NHz7y8Q5XXaAv/1K8HbXB27rT5nEYg9AxzAVZFXBPlKmKZgTGX1ZP5nGjBBuOhUs9ZtFbRXYp0Uj4+eDQ=="
+          crossOrigin="anonymous"
+          referrerPolicy="no-referrer"
+        /> */}
+        {/* <link
+          rel="stylesheet"
+          crossOrigin="anonymous"
+          referrerPolicy="no-referrer"
+          href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        />
+        <link
+          rel="stylesheet"
+          crossOrigin="anonymous"
+          referrerPolicy="no-referrer"
+          href="https://cdnjs.cloudflare.com/ajax/libs/line-awesome/1.3.0/line-awesome/css/line-awesome.min.css"
+        /> */}
+      </head>
       <body className={inter.className}>{children}</body>
     </html>
   );

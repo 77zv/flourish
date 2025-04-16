@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Header from "../../components/header";
 import Footer from "../../components/footer";
 
@@ -581,7 +581,7 @@ function MainComponent() {
         }
 
         .shine-effect::before {
-          content: '';
+          content: "";
           position: absolute;
           top: 0;
           left: -100%;
