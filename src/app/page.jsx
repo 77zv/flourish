@@ -179,7 +179,7 @@ function MainComponent() {
                   <GPABoost width={20} height={20} />
                 </div> */}
 
-                <img src="/icons/GPABoost.svg" />
+                <img src="/icons/GPABoost.svg" alt="" />
 
                 <h3 className="text-2xl font-bold text-white font-inter mb-1">
                   GPA Boost
@@ -201,7 +201,7 @@ function MainComponent() {
                   <i className="fas fa-file-alt text-6xl text-white"></i>
                 </div> */}
                 {/* <MCATCars /> */}
-                <img src="/icons/MCATCars.svg" />
+                <img src="/icons/MCATCars.svg" alt="" />
                 <h3 className="text-2xl font-bold text-white font-inter mb-1">
                   MCAT CARS
                 </h3>
@@ -220,7 +220,7 @@ function MainComponent() {
                   <i className="fas fa-users text-6xl text-white"></i>
                 </div> */}
                 {/* <CASPer /> */}
-                <img src="/icons/CASPer.svg" />
+                <img src="/icons/CASPer.svg" alt="" />
                 <h3 className="text-2xl font-bold text-white font-inter mb-1">
                   CASPer
                 </h3>
@@ -239,7 +239,7 @@ function MainComponent() {
                   <i className="fas fa-tasks text-6xl text-white"></i>
                 </div> */}
                 {/* <Comments /> */}
-                <img src="/icons/Comments.svg" />
+                <img src="/icons/Comments.svg" alt="" />
                 <h3 className="text-2xl font-bold text-white font-inter mb-1">
                   Applications
                 </h3>
@@ -260,7 +260,7 @@ function MainComponent() {
                   <i className="fas fa-comments text-6xl text-white"></i>
                 </div> */}
                 {/* <MMiPrep /> */}
-                <img src="/icons/MMiPrep.svg" />
+                <img src="/icons/MMiPrep.svg" alt="" />
                 <h3 className="text-2xl font-bold text-white font-inter mb-1">
                   MMI Prep
                 </h3>
@@ -331,7 +331,7 @@ function MainComponent() {
                     "mb-6"
                   )}
                 >
-                  <img src="/icons/ExistingApplicants.svg" width="80" />
+                  <img src="/icons/ExistingApplicants.svg" alt="" width="80" />
                   <div>
                     <div className="text-[#FFD700] text-3xl font-bold mb-2">
                       8000+
@@ -351,7 +351,7 @@ function MainComponent() {
                     "mb-6"
                   )}
                 >
-                  <img src="/icons/AvailableSeats.svg" width="80" />
+                  <img src="/icons/AvailableSeats.svg" alt="" width="80" />
                   <div>
                     <div className="text-[#FFD700] text-3xl font-bold mb-2">
                       -900
@@ -371,7 +371,7 @@ function MainComponent() {
                   <div className="bg-[#1D1D1D] rounded-lg p-6">
                     <div className="flex items-start gap-4">
                       {/* <i className="fas fa-chart-line text-[#FFD700] text-2xl mt-1"></i> */}
-                      <img src="/icons/StrategicAdv.svg" width="25" />
+                      <img src="/icons/StrategicAdv.svg" alt="" width="25" />
                       <div>
                         <h4 className="text-xl font-bold text-white mb-2">
                           Strategic Advantage
@@ -389,7 +389,7 @@ function MainComponent() {
                   <div className="bg-[#1D1D1D] rounded-lg p-6">
                     <div className="flex items-start gap-4">
                       {/* <i className="fas fa-bullseye text-[#FFD700] text-2xl mt-1"></i> */}
-                      <img src="/icons/Target.svg" width="25" />
+                      <img src="/icons/Target.svg" alt="" width="25" />
                       <div>
                         <h4 className="text-xl font-bold text-white mb-2">
                           Targeted Preparation
@@ -407,7 +407,7 @@ function MainComponent() {
                   <div className="bg-[#1D1D1D] rounded-lg p-6">
                     <div className="flex items-start gap-4">
                       {/* <i className="fas fa-trophy text-[#FFD700] text-2xl mt-1"></i> */}
-                      <img src="/icons/Track.svg" width="25" />
+                      <img src="/icons/Track.svg" alt="" width="25" />
                       <div>
                         <h4 className="text-xl font-bold text-white mb-2">
                           Proven Track Record
@@ -452,7 +452,8 @@ function MainComponent() {
                 <div className="space-y-4 mb-8">
                   <div className="flex items-start gap-4">
                     <div className="w-12 h-12 rounded-full bg-[#FFD700]/10 flex items-center justify-center flex-shrink-0">
-                      <i className="fas fa-road text-[#FFD700] text-xl"></i>
+                      {/* <i className="fas fa-road text-[#FFD700] text-xl"></i> */}
+                      <img src="/icons/PersonalImage1.svg" alt="" />
                     </div>
                     <div>
                       <h3 className="text-xl font-bold text-white mb-2">
@@ -466,7 +467,8 @@ function MainComponent() {
                   </div>
                   <div className="flex items-start gap-4">
                     <div className="w-12 h-12 rounded-full bg-[#FFD700]/10 flex items-center justify-center flex-shrink-0">
-                      <i className="fas fa-lightbulb text-[#FFD700] text-xl"></i>
+                      {/* <i className="fas fa-lightbulb text-[#FFD700] text-xl"></i> */}
+                      <img src="/icons/PersonalImage2.svg" alt="" />
                     </div>
                     <div>
                       <h3 className="text-xl font-bold text-white mb-2">
@@ -480,7 +482,8 @@ function MainComponent() {
                   </div>
                   <div className="flex items-start gap-4">
                     <div className="w-12 h-12 rounded-full bg-[#FFD700]/10 flex items-center justify-center flex-shrink-0">
-                      <i className="fas fa-heart text-[#FFD700] text-xl"></i>
+                      {/* <i className="fas fa-heart text-[#FFD700] text-xl"></i> */}
+                      <img src="/icons/PersonalImage3.svg" alt="" />
                     </div>
                     <div>
                       <h3 className="text-xl font-bold text-white mb-2">
@@ -499,14 +502,20 @@ function MainComponent() {
                   <div className="w-full aspect-square relative">
                     <div className="absolute inset-0 flex items-center justify-center">
                       <div className="w-64 h-64 md:w-80 md:h-80 relative">
-                        <i className="fas fa-handshake text-[#FFD700] text-[160px] md:text-[200px] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></i>
+                        {/* <i className="fas fa-handshake text-[#FFD700] text-[160px] md:text-[200px] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></i> */}
+                        <img
+                          src="/icons/fa6-solid_handshake.svg"
+                          alt=""
+                          width="240"
+                          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+                        />
                         <div className="absolute inset-0 bg-[#FFD700]/20 blur-[100px] rounded-full"></div>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                  <div className="w-72 h-72 md:w-96 md:h-96 rounded-full border-2 border-[#FFD700]/20 animate-spin-slow"></div>
+                  <div className="w-72 h-72 md:w-96 md:h-96 rounded-full border-2 border-[#FFD700]/20 animate-spin-slow absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
                   <div className="w-64 h-64 md:w-80 md:h-80 rounded-full border-2 border-[#FFD700]/10 animate-spin-slower absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
                 </div>
               </div>
