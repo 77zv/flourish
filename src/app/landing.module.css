@@ -18,9 +18,19 @@
   font-size: 1rem;
 }
 
-.nextstepContainer {
-  background: #161616fe;
-  border-radius: 25px;
-  padding: 30px;
+.cardContainer,
+.cardInnerContainer,
+.cardInnerContainer2 {
+  border-radius: 14px;
   border: 2px solid #1f1e21;
+}
+
+.cardContainer {
+  background: #161616fe;
+  padding: 30px;
+}
+
+.cardInnerContainer {
+  background: #161616fe;
+  padding: 15px;
 }

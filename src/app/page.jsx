@@ -273,11 +273,7 @@ function MainComponent() {
         <section className="py-16 px-6 bg-black">
           <div className="max-w-7xl mx-auto">
             <div
-              className={classNames(
-                "text-center",
-                "mb-12",
-                css.nextstepContainer
-              )}
+              className={classNames("text-center", "mb-12", css.cardContainer)}
             >
               <h2 className="text-4xl md:text-5xl font-bold text-white font-inter mb-4">
                 Take the Next Step Toward Medical School
@@ -295,85 +291,125 @@ function MainComponent() {
               </a>
             </div>
             <div className="grid md:grid-cols-2 gap-8 mb-12">
-              <div>
+              <div className={css.cardContainer}>
                 <h3 className="text-3xl md:text-4xl font-bold text-white font-inter mb-8">
                   The Hard Truth About Canadian Med School
                 </h3>
 
-                <div className="bg-[#111] rounded-lg p-6 mb-6">
-                  <div className="mb-4">
-                    <span className="text-gray-300">Acceptance Rate</span>
-                    <div className="flex items-center gap-4">
-                      <div className="h-2 flex-grow bg-[#111] rounded-full overflow-hidden">
-                        <div className="h-full w-[10%] bg-[#FFD700]"></div>
+                <div className={classNames(css.cardInnerContainer, "mb-6")}>
+                  <div className="bg-[#111] rounded-lg p-6 ">
+                    <div className="mb-4">
+                      <span className="text-gray-300">Acceptance Rate</span>
+                      <div className="flex items-center gap-4">
+                        <div className="h-2 flex-grow bg-[#111] rounded-full overflow-hidden">
+                          <div className="h-full w-[10%] bg-[#FFD700]"></div>
+                        </div>
+                        <span className="text-[#FFD700] font-bold">5-10%</span>
                       </div>
-                      <span className="text-[#FFD700] font-bold">5-10%</span>
                     </div>
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="bg-[#111] rounded-lg p-6">
+                {/* <div className="grid grid-cols-2 gap-4"> */}
+
+                <div
+                  className={classNames(
+                    css.cardInnerContainer2,
+                    "bg-[#1D1D1D]",
+                    "flex",
+                    "items-start",
+                    "gap-8",
+                    "rounded-lg",
+                    "p-10",
+                    "mb-6"
+                  )}
+                >
+                  <img src="/icons/ExistingApplicants.svg" width="80" />
+                  <div>
                     <div className="text-[#FFD700] text-3xl font-bold mb-2">
                       8000+
                     </div>
                     <div className="text-gray-300">Annual Applicants</div>
                   </div>
-                  <div className="bg-[#111] rounded-lg p-6">
+                </div>
+                <div
+                  className={classNames(
+                    css.cardInnerContainer2,
+                    "bg-[#1D1D1D]",
+                    "flex",
+                    "items-start",
+                    "gap-8",
+                    "rounded-lg",
+                    "p-10",
+                    "mb-6"
+                  )}
+                >
+                  <img src="/icons/AvailableSeats.svg" width="80" />
+                  <div>
                     <div className="text-[#FFD700] text-3xl font-bold mb-2">
-                      ~900
+                      -900
                     </div>
                     <div className="text-gray-300">Available Seats</div>
                   </div>
                 </div>
+                {/* </div> */}
               </div>
 
-              <div>
+              <div className={css.cardContainer}>
                 <h3 className="text-3xl md:text-4xl font-bold text-white font-inter mb-8">
                   Why PreMD Makes a Difference
                 </h3>
 
                 <div className="stagger-fade-in space-y-4">
-                  <div className="bg-[#111] rounded-lg p-6">
+                  <div className="bg-[#1D1D1D] rounded-lg p-6">
                     <div className="flex items-start gap-4">
-                      <i className="fas fa-chart-line text-[#FFD700] text-2xl mt-1"></i>
+                      {/* <i className="fas fa-chart-line text-[#FFD700] text-2xl mt-1"></i> */}
+                      <img src="/icons/StrategicAdv.svg" width="25" />
                       <div>
                         <h4 className="text-xl font-bold text-white mb-2">
                           Strategic Advantage
                         </h4>
                         <p className="text-gray-300">
-                          We help you stand out in Canada's competitive medical
-                          school landscape
+                          {/* We help you stand out in Canada's competitive medical
+                          school landscape */}
+                          Cain msights and a plan to navigate the highly
+                          competitive medical school lundora
                         </p>
                       </div>
                     </div>
                   </div>
 
-                  <div className="bg-[#111] rounded-lg p-6">
+                  <div className="bg-[#1D1D1D] rounded-lg p-6">
                     <div className="flex items-start gap-4">
-                      <i className="fas fa-bullseye text-[#FFD700] text-2xl mt-1"></i>
+                      {/* <i className="fas fa-bullseye text-[#FFD700] text-2xl mt-1"></i> */}
+                      <img src="/icons/Target.svg" width="25" />
                       <div>
                         <h4 className="text-xl font-bold text-white mb-2">
                           Targeted Preparation
                         </h4>
                         <p className="text-gray-300">
-                          Customized guidance for each component of your
+                          {/* Customized guidance for each component of your
+                          application */}
+                          Comprehensive guidance of every stage of your
                           application
                         </p>
                       </div>
                     </div>
                   </div>
 
-                  <div className="bg-[#111] rounded-lg p-6">
+                  <div className="bg-[#1D1D1D] rounded-lg p-6">
                     <div className="flex items-start gap-4">
-                      <i className="fas fa-trophy text-[#FFD700] text-2xl mt-1"></i>
+                      {/* <i className="fas fa-trophy text-[#FFD700] text-2xl mt-1"></i> */}
+                      <img src="/icons/Track.svg" width="25" />
                       <div>
                         <h4 className="text-xl font-bold text-white mb-2">
                           Proven Track Record
                         </h4>
                         <p className="text-gray-300">
-                          Our students consistently achieve above-average
-                          acceptance rates
+                          {/* Our students consistently achieve above-average
+                          acceptance rates */}
+                          Our strategies consistenity drive exceptional
+                          admission oulcomes,
                         </p>
                       </div>
                     </div>
