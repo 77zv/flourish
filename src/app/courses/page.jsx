@@ -78,7 +78,7 @@ function MainComponent() {
 
   return (
     <div className="font-roboto bg-black text-white">
-      <Header />
+      {/* <Header /> */}
       <main className="pt-[60px] px-6 pb-12">
         <div className="max-w-7xl mx-auto section-reveal">
           <div className="text-center mb-16">
@@ -130,11 +130,11 @@ function MainComponent() {
           </div>
         </div>
       </main>
-      <Footer />
+      {/* <Footer /> */}
       <style jsx global>{`
         /* Card enhancement */
         .course-card {
-          background: linear-gradient(145deg, #1A1A1A, #111111);
+          background: linear-gradient(145deg, #1a1a1a, #111111);
           position: relative;
           border: 1px solid rgba(255, 215, 0, 0.1);
           transition: border-color 0.3s ease, background 0.3s ease;
@@ -144,20 +144,21 @@ function MainComponent() {
 
         .course-card:hover {
           border-color: rgba(255, 215, 0, 0.3);
-          background: linear-gradient(145deg, #1A1A1A, #151515);
+          background: linear-gradient(145deg, #1a1a1a, #151515);
         }
 
         /* Top accent line */
         .course-card::before {
-          content: '';
+          content: "";
           position: absolute;
           top: 0;
           left: 0;
           right: 0;
           height: 1px;
-          background: linear-gradient(90deg, 
-            transparent, 
-            rgba(255, 215, 0, 0.2), 
+          background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 215, 0, 0.2),
             transparent
           );
           transform: scaleX(0.3);
@@ -175,13 +176,13 @@ function MainComponent() {
         }
 
         .feature-item::before {
-          content: '';
+          content: "";
           position: absolute;
           left: 0;
           top: 50%;
           width: 6px;
           height: 6px;
-          background: #FFD700;
+          background: #ffd700;
           transform: translateY(-50%) rotate(45deg);
           opacity: 0.5;
           transition: opacity 0.3s ease;
@@ -193,7 +194,7 @@ function MainComponent() {
 
         /* Icons */
         .feature-icon {
-          color: #FFD700;
+          color: #ffd700;
           opacity: 0.7;
           transition: opacity 0.3s ease;
         }
@@ -209,13 +210,23 @@ function MainComponent() {
         }
 
         @keyframes fadeIn {
-          from { opacity: 0; }
-          to { opacity: 1; }
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
         }
 
         /* Title highlight effect */
         .title-highlight {
-          background: linear-gradient(120deg, transparent 0%, transparent 50%, rgba(255, 215, 0, 0.1) 50%, transparent 100%);
+          background: linear-gradient(
+            120deg,
+            transparent 0%,
+            transparent 50%,
+            rgba(255, 215, 0, 0.1) 50%,
+            transparent 100%
+          );
           background-size: 200% 100%;
           transition: background-position 0.5s ease;
         }
@@ -229,9 +240,9 @@ function MainComponent() {
           position: relative;
           overflow: hidden;
         }
-        
+
         .shine-effect::after {
-          content: '';
+          content: "";
           position: absolute;
           top: -50%;
           left: -50%;
@@ -240,16 +251,20 @@ function MainComponent() {
           background: linear-gradient(
             45deg,
             transparent 0%,
-            rgba(255,255,255,0.1) 50%,
+            rgba(255, 255, 255, 0.1) 50%,
             transparent 100%
           );
           transform: rotate(45deg);
           animation: shine 4s infinite;
         }
-        
+
         @keyframes shine {
-          0% { transform: translateX(-100%) rotate(45deg); }
-          100% { transform: translateX(100%) rotate(45deg); }
+          0% {
+            transform: translateX(-100%) rotate(45deg);
+          }
+          100% {
+            transform: translateX(100%) rotate(45deg);
+          }
         }
       `}</style>
     </div>

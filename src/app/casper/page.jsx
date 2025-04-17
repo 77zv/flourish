@@ -15,7 +15,7 @@ function MainComponent() {
 
   return (
     <div className="font-roboto bg-black text-white">
-      <Header onGetStarted={handleGetStarted} />
+      {/* <Header onGetStarted={handleGetStarted} /> */}
 
       <main className="pt-[60px]">
         <section className="bg-black text-white py-8 md:py-12">
@@ -522,7 +522,7 @@ function MainComponent() {
         </section>
       </main>
 
-      <Footer />
+      {/* <Footer /> */}
 
       {showConsultModal && (
         <div className="fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-50">

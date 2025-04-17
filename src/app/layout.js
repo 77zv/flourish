@@ -1,5 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
+// import { StoryComponent as HeaderStory } from "@/components/header";
+// import { StoryComponent as FooterStory } from "@/components/footer";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 

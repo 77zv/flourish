@@ -134,7 +134,7 @@ function MainComponent() {
 
   return (
     <div className="font-roboto bg-black text-white">
-      <Header />
+      {/* <Header /> */}
 
       <main className="pt-[60px] px-4 md:px-6 pb-8 md:pb-12">
         <div className="max-w-3xl mx-auto">
@@ -634,7 +634,7 @@ function MainComponent() {
         </div>
       </main>
 
-      <Footer />
+      {/* <Footer /> */}
       <style jsx global>{`
         .animate-fadeIn {
           animation: fadeIn 0.5s ease-out;

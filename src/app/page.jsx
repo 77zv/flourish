@@ -82,7 +82,7 @@ function MainComponent() {
 
   return (
     <div className="font-roboto bg-black text-white">
-      <Header />
+      {/* <Header /> */}
 
       <main className="pt-[60px]">
         <section className="py-8 md:py-16 px-6">
@@ -595,7 +595,7 @@ function MainComponent() {
         </section>
       </main>
 
-      <Footer />
+      {/* <Footer /> */}
       <style jsx global>{`
         @keyframes fadeIn {
           from {

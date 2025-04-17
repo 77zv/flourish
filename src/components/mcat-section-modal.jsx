@@ -1,10 +1,9 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 
-
-
-export default function Index() {
-  return (function MainComponent({ isOpen, onClose, section }) {
+// export default function Index() {
+//   return (
+function MainComponent({ isOpen, onClose, section }) {
   if (!isOpen || !section) return null;
 
   const sectionDetails = {
@@ -184,7 +183,7 @@ export default function Index() {
   );
 }
 
-function StoryComponent() {
+export default function McatSectionModal() {
   const [isOpen, setIsOpen] = useState(true);
   const sections = ["cp", "cars", "bb", "ps"];
   const [currentSection, setCurrentSection] = useState("cp");
@@ -213,5 +212,6 @@ function StoryComponent() {
       />
     </div>
   );
-});
 }
+// );
+// }

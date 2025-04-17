@@ -1,7 +1,8 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Header from "../../components/header";
 import Footer from "../../components/footer";
+import McatSectionModal from "@/components/mcat-section-modal";
 
 function MainComponent() {
   const mcatSections = [
@@ -100,7 +101,7 @@ function MainComponent() {
 
   return (
     <div className="font-roboto bg-black text-white">
-      <Header onGetStarted={handleConsultation} />
+      {/* <Header onGetStarted={handleConsultation} /> */}
 
       <main className="pt-[60px]">
         <section className="bg-gradient-to-b from-black to-[#111] py-20 px-6">
@@ -340,7 +341,7 @@ function MainComponent() {
         </section>
       </main>
 
-      <Footer />
+      {/* <Footer /> */}
       <McatSectionModal
         isOpen={selectedSection !== null}
         onClose={() => setSelectedSection(null)}
@@ -372,8 +373,12 @@ function MainComponent() {
         }
 
         @keyframes fillProgress {
-          from { width: 0; }
-          to { width: var(--progress-width); }
+          from {
+            width: 0;
+          }
+          to {
+            width: var(--progress-width);
+          }
         }
 
         /* Score display animation */
@@ -382,9 +387,15 @@ function MainComponent() {
         }
 
         @keyframes scoreGlow {
-          0% { text-shadow: 0 0 5px rgba(255, 215, 0, 0.5); }
-          50% { text-shadow: 0 0 20px rgba(255, 215, 0, 0.8); }
-          100% { text-shadow: 0 0 5px rgba(255, 215, 0, 0.5); }
+          0% {
+            text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+          }
+          50% {
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+          }
+          100% {
+            text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+          }
         }
       `}</style>
     </div>
