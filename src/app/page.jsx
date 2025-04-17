@@ -296,12 +296,19 @@ function MainComponent() {
                   The Hard Truth About Canadian Med School
                 </h3>
 
-                <div className={classNames(css.cardInnerContainer, "mb-6")}>
+                <div
+                  className={classNames(
+                    css.cardInnerContainer2,
+                    "bg-[#1D1D1D]",
+                    "p-4",
+                    "mb-6"
+                  )}
+                >
                   <div className="bg-[#111] rounded-lg p-6 ">
                     <div className="mb-4">
                       <span className="text-gray-300">Acceptance Rate</span>
                       <div className="flex items-center gap-4">
-                        <div className="h-2 flex-grow bg-[#111] rounded-full overflow-hidden">
+                        <div className="h-2 flex-grow bg-[#1D1D1D] rounded-full overflow-hidden">
                           <div className="h-full w-[10%] bg-[#FFD700]"></div>
                         </div>
                         <span className="text-[#FFD700] font-bold">5-10%</span>

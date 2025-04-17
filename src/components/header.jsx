@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 
-export default function Index() {
+export default function Header() {
   return (
     function MainComponent() {
       const [isMenuOpen, setIsMenuOpen] = useState(false);

@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 
-export default function Index() {
+export default function Footer() {
   return (
     function MainComponent() {
       const [isMenuOpen, setIsMenuOpen] = useState(false);
